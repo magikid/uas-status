@@ -38,7 +38,7 @@ current_space_status = get_status current_space_status_message
 
 if current_space_status != previous_space_status then
   File.write("uas_status.log", current_space_status_message)
-  if current_space_status  == :closed
+  if current_space_status  == :open
     page = Nokogiri::HTML(open("http://unallocatedspace.org/thewall/all.php"))
     img_src = "http://unallocatedspace.org/thewall/" +  page.at_css("#galleryList li a").attr("href")
     attachments = {fallback: "UAS is open", ts: previous_update_time, text: "The space is open. <#{img_src}|See the 'Wall of Requests'>", color: "good"}
